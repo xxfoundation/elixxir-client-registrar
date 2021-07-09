@@ -3,6 +3,7 @@ package storage
 import (
 	"fmt"
 	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"github.com/pkg/errors"
 	jww "github.com/spf13/jwalterweatherman"
 	"time"

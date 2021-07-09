@@ -85,7 +85,10 @@ var rootCmd = &cobra.Command{
 		}
 
 		ClientRegCodes = viper.GetStringSlice("clientRegCodes")
-		db.PopulateClientRegistrationCodes(ClientRegCodes, 1000)
+		err = db.PopulateClientRegistrationCodes(ClientRegCodes, 1000)
+		if err != nil {
+			jww.FATAL.Panicf("Failed to insert client registration codes: %+v", err)
+		}
 
 		userRegLeakPeriodString := viper.GetString("userRegLeakPeriod")
 		var userRegLeakPeriod time.Duration
