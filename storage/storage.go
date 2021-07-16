@@ -1,7 +1,6 @@
 package storage
 
 import (
-	jww "github.com/spf13/jwalterweatherman"
 	"testing"
 )
 
@@ -17,12 +16,12 @@ func (s *Storage) GetMapImpl(t *testing.T) *MapImpl {
 }
 
 // PopulateClientRegistrationCodes adds Client registration codes to the Database
-func (s *Storage) PopulateClientRegistrationCodes(codes []string, uses int) {
+func (s *Storage) PopulateClientRegistrationCodes(codes []string, uses int) error {
 	for _, code := range codes {
 		err := s.InsertClientRegCode(code, uses)
 		if err != nil {
-			jww.ERROR.Printf("Unable to populate Client registration code: %+v",
-				err)
+			return err
 		}
 	}
+	return nil
 }

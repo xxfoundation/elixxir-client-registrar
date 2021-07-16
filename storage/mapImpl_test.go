@@ -5,6 +5,44 @@ import (
 	"time"
 )
 
+//func TestDatabaseImpl(t *testing.T) {
+//	db, _, err := NewDatabase("postgres", "", "clientregistrar", "0.0.0.0", "5432")
+//	if err != nil {
+//		t.Errorf("Failed to create DB: %+v", err)
+//		t.FailNow()
+//	}
+//	err = db.PopulateClientRegistrationCodes([]string{"AAAAA", "BBBBB", "CCCCC"}, 1)
+//	if err != nil {
+//		t.Errorf("Failed to populate reg codes: %+v", err)
+//	}
+//
+//	err = db.UseCode("AAAAA")
+//	if err != nil {
+//		t.Errorf("Failed to use code AAAAA: %+v", err)
+//	}
+//
+//	err = db.UseCode("AAAAA")
+//	if err == nil {
+//		t.Errorf("Should not have been able to use code AAAAA again")
+//	}
+//
+//	err = db.InsertUser(&User{
+//		PublicKey:             "pub",
+//		ReceptionKey:          "reception",
+//		RegistrationTimestamp: time.Now(),
+//	})
+//	if err != nil {
+//		t.Errorf("Failed to insert user: %+v", err)
+//	}
+//	u, err := db.GetUser("pub")
+//	if err != nil {
+//		t.Errorf("Failed to get user: %+v", err)
+//	}
+//	if u.ReceptionKey != "reception" {
+//		t.Errorf("Wow somehow you got the wrong user back this shouldn't happen")
+//	}
+//}
+
 // Happy path
 func TestMapImpl_InsertClientRegCode(t *testing.T) {
 	m := &MapImpl{

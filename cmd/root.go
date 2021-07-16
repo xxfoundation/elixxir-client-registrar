@@ -21,7 +21,6 @@ import (
 	"os"
 	"os/signal"
 	"path"
-	"runtime/pprof"
 	"sync/atomic"
 	"syscall"
 	"time"
@@ -48,20 +47,11 @@ const defaultDisabledNodesPollDuration = time.Minute
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "registration",
+	Use:   "client registrar",
 	Short: "Runs a registration server for cMix",
-	Long:  `This server provides registration functions on cMix`,
+	Long:  `This server provides client registration functions on cMix`,
 	Args:  cobra.NoArgs,
 	Run: func(cmd *cobra.Command, args []string) {
-		profileOut := viper.GetString("profile-cpu")
-		if profileOut != "" {
-			f, err := os.Create(profileOut)
-			if err != nil {
-				jww.FATAL.Panicf("%+v", err)
-			}
-			pprof.StartCPUProfile(f)
-		}
-
 		// Parse config file options
 		certPath := viper.GetString("certPath")
 		keyPath := viper.GetString("keyPath")
@@ -95,7 +85,10 @@ var rootCmd = &cobra.Command{
 		}
 
 		ClientRegCodes = viper.GetStringSlice("clientRegCodes")
-		db.PopulateClientRegistrationCodes(ClientRegCodes, 1000)
+		err = db.PopulateClientRegistrationCodes(ClientRegCodes, 1000)
+		if err != nil {
+			jww.FATAL.Panicf("Failed to insert client registration codes: %+v", err)
+		}
 
 		userRegLeakPeriodString := viper.GetString("userRegLeakPeriod")
 		var userRegLeakPeriod time.Duration
@@ -196,31 +189,6 @@ func init() {
 	if err != nil {
 		jww.FATAL.Panicf("could not bind flag: %+v", err)
 	}
-
-	err = viper.BindPFlag("schedulingKillTimeout",
-		rootCmd.Flags().Lookup("kill-timeout"))
-	if err != nil {
-		jww.FATAL.Panicf("could not bind flag: %+v", err)
-	}
-
-	err = viper.BindPFlag("schedulingKillTimeout",
-		rootCmd.Flags().Lookup("kill-timeout"))
-	if err != nil {
-		jww.FATAL.Panicf("could not bind flag: %+v", err)
-	}
-
-	rootCmd.Flags().String("udContactPath", "",
-		"Location of the user discovery contact file.")
-
-	err = viper.BindPFlag("udContactPath", rootCmd.Flags().Lookup("udContactPath"))
-	if err != nil {
-		jww.FATAL.Panicf("could not bind flag: %+v", err)
-	}
-
-	rootCmd.Flags().String("profile-cpu", "",
-		"Enable cpu profiling to this file")
-	viper.BindPFlag("profile-cpu", rootCmd.Flags().Lookup("profile-cpu"))
-
 }
 
 // initConfig reads in config file and ENV variables if set.
