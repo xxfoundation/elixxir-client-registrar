@@ -1,4 +1,4 @@
-package client_registrar
+package main
 
 import "gitlab.com/elixxir/client-registrar/cmd"
 
