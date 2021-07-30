@@ -19,6 +19,7 @@ before_script:
   - ssh-keyscan -t rsa $GITLAB_SERVER > ~/.ssh/known_hosts
   - git config --global url."git@$GITLAB_SERVER:".insteadOf "https://gitlab.com/"
   - git config --global url."git@$GITLAB_SERVER:".insteadOf "https://git.xx.network/"
+  - git config --global url."git@$GITLAB_SERVER:".insteadOf "https://gitlab.com/"
   - cat ~/.gitconfig
   - export PATH=$HOME/go/bin:$PATH
 
