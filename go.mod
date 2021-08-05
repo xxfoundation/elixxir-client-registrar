@@ -15,7 +15,7 @@ require (
 	github.com/spf13/viper v1.7.1
 	gitlab.com/elixxir/comms v0.0.4-0.20210805213228-31cab5eed889
 	gitlab.com/elixxir/crypto v0.0.7-0.20210805213158-9f65e5da6ec4
-	gitlab.com/elixxir/registration v1.5.1-0.20210805214750-284bae63d70f
+	gitlab.com/elixxir/registration v1.5.1-0.20210805221554-9968cf6a704d
 	gitlab.com/xx_network/comms v0.0.4-0.20210805212502-c0497d79cfa5
 	gitlab.com/xx_network/crypto v0.0.5-0.20210803231814-b18476a2257c
 	gitlab.com/xx_network/primitives v0.0.4-0.20210803222745-e898d5e546e9
