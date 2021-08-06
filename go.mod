@@ -26,11 +26,11 @@ require (
 	github.com/ugorji/go v1.1.4 // indirect
 	github.com/xordataexchange/crypt v0.0.3-0.20170626215501-b2862e3d0a77 // indirect
 	github.com/zeebo/blake3 v0.1.1 // indirect
-	gitlab.com/elixxir/comms v0.0.4-0.20210806000609-a76e18bf18cc
+	gitlab.com/elixxir/comms v0.0.4-0.20210806005425-5d9ef1cb62f0
 	gitlab.com/elixxir/crypto v0.0.7-0.20210715174359-2ee9461daae7
 	gitlab.com/elixxir/primitives v0.0.3-0.20210715174241-fddf320de581 // indirect
-	gitlab.com/elixxir/registration v1.5.1-0.20210806001209-bab49761bfe3
-	gitlab.com/xx_network/comms v0.0.4-0.20210805233839-a282f186b9bc
+	gitlab.com/elixxir/registration v1.5.1-0.20210806005943-301b9ba85474
+	gitlab.com/xx_network/comms v0.0.4-0.20210806004558-10a717d0c45e
 	gitlab.com/xx_network/crypto v0.0.5-0.20210715174114-f33d03bc10ec
 	gitlab.com/xx_network/primitives v0.0.4-0.20210715170345-a78092d7b48e
 	gitlab.com/xx_network/ring v0.0.3-0.20210527191221-ce3f170aabd5 // indirect
