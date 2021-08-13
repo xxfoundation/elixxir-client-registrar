@@ -4,14 +4,14 @@ import (
 	"crypto/x509"
 	"github.com/pkg/errors"
 	jww "github.com/spf13/jwalterweatherman"
-	"gitlab.com/elixxir/client-registrar/storage"
-	"gitlab.com/elixxir/comms/clientregistrar"
-	pb "gitlab.com/elixxir/comms/mixmessages"
-	"gitlab.com/xx_network/crypto/signature/rsa"
-	"gitlab.com/xx_network/crypto/tls"
-	"gitlab.com/xx_network/primitives/id"
-	"gitlab.com/xx_network/primitives/rateLimiting"
-	"gitlab.com/xx_network/primitives/utils"
+	"git.xx.network/elixxir/client-registrar/storage"
+	"git.xx.network/elixxir/comms/clientregistrar"
+	pb "git.xx.network/elixxir/comms/mixmessages"
+	"git.xx.network/xx_network/crypto/signature/rsa"
+	"git.xx.network/xx_network/crypto/tls"
+	"git.xx.network/xx_network/primitives/id"
+	"git.xx.network/xx_network/primitives/rateLimiting"
+	"git.xx.network/xx_network/primitives/utils"
 )
 
 type Impl struct {

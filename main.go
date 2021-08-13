@@ -1,6 +1,6 @@
 package main
 
-import "gitlab.com/elixxir/client-registrar/cmd"
+import "git.xx.network/elixxir/client-registrar/cmd"
 
 func main() {
 	cmd.Execute()

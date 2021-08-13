@@ -12,10 +12,10 @@ import (
 	"crypto/rand"
 	"github.com/pkg/errors"
 	jww "github.com/spf13/jwalterweatherman"
-	"gitlab.com/elixxir/client-registrar/storage"
-	pb "gitlab.com/elixxir/comms/mixmessages"
-	"gitlab.com/elixxir/crypto/registration"
-	"gitlab.com/xx_network/comms/messages"
+	"git.xx.network/elixxir/client-registrar/storage"
+	pb "git.xx.network/elixxir/comms/mixmessages"
+	"git.xx.network/elixxir/crypto/registration"
+	"git.xx.network/xx_network/comms/messages"
 	"time"
 )
 
