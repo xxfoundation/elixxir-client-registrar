@@ -64,7 +64,7 @@ func StartRegistrar(params Params, db *storage.Storage) (*Impl, error) {
 
 func NewImplementation(instance *Impl) *clientregistrar.Implementation {
 	impl := clientregistrar.NewImplementation()
-	impl.Functions.RegisterUser = func(msg *pb.UserRegistration) (*pb.UserRegistrationConfirmation, error) {
+	impl.Functions.RegisterUser = func(msg *pb.ClientRegistration) (*pb.SignedClientRegistrationConfirmations, error) {
 		confirmationMessage, err := instance.RegisterUser(msg)
 		if err != nil {
 			jww.ERROR.Printf("RegisterUser error: %+v", err)

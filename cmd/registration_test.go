@@ -69,10 +69,10 @@ func TestRegCodeExists_RegUser(t *testing.T) {
 	}
 
 	// Attempt to register a user
-	msg := &pb.UserRegistration{
-		RegistrationCode:         "AAAA",
-		ClientRSAPubKey:          string(nodeKey),
-		ClientReceptionRSAPubKey: string(nodeKey),
+	msg := &pb.ClientRegistration{
+		RegistrationCode:            "AAAA",
+		ClientTransmissionRSAPubKey: string(nodeKey),
+		ClientReceptionRSAPubKey:    string(nodeKey),
 	}
 	response, err := impl.RegisterUser(msg)
 
@@ -80,9 +80,9 @@ func TestRegCodeExists_RegUser(t *testing.T) {
 		t.Errorf("Failed to register a node when it should have worked: %+v", err)
 	}
 
-	if response.ClientReceptionSignedByServer == nil || response.ClientSignedByServer == nil {
+	if response.ClientTransmissionConfirmation == nil || response.ClientReceptionConfirmation == nil {
 		t.Errorf("Failed to sign public key, recieved %+v as a signature & %+v as a receptionSignature",
-			response.ClientSignedByServer, response.ClientReceptionSignedByServer)
+			response.ClientTransmissionConfirmation, response.ClientReceptionConfirmation)
 	}
 	impl.Comms.Shutdown()
 }
@@ -118,10 +118,10 @@ func TestRegCodeExists_RegUser_Timer(t *testing.T) {
 
 	for i := 0; i < int(testParams2.userRegCapacity); i++ {
 		// Attempt to register a user
-		msg := &pb.UserRegistration{
-			RegistrationCode:         "",
-			ClientRSAPubKey:          strconv.Itoa(i),
-			ClientReceptionRSAPubKey: strconv.Itoa(i),
+		msg := &pb.ClientRegistration{
+			RegistrationCode:            "",
+			ClientTransmissionRSAPubKey: strconv.Itoa(i),
+			ClientReceptionRSAPubKey:    strconv.Itoa(i),
 		}
 		_, err = impl.RegisterUser(msg)
 		if err != nil {
@@ -130,10 +130,10 @@ func TestRegCodeExists_RegUser_Timer(t *testing.T) {
 
 	}
 
-	msg := &pb.UserRegistration{
-		RegistrationCode:         "",
-		ClientRSAPubKey:          strconv.Itoa(int(testParams2.userRegCapacity)),
-		ClientReceptionRSAPubKey: strconv.Itoa(int(testParams2.userRegCapacity)),
+	msg := &pb.ClientRegistration{
+		RegistrationCode:            "",
+		ClientTransmissionRSAPubKey: strconv.Itoa(int(testParams2.userRegCapacity)),
+		ClientReceptionRSAPubKey:    strconv.Itoa(int(testParams2.userRegCapacity)),
 	}
 
 	// Attempt to register a user once capacity has been reached
