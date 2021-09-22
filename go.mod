@@ -3,6 +3,7 @@ module gitlab.com/elixxir/client-registrar
 go 1.16
 
 require (
+	github.com/golang/protobuf v1.5.2
 	github.com/gopherjs/gopherjs v0.0.0-20200217142428-fce0ec30dd00 // indirect
 	github.com/jinzhu/gorm v1.9.12
 	github.com/mitchellh/go-homedir v1.1.0
