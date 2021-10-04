@@ -31,8 +31,6 @@ func (m *Impl) RegisterUser(msg *pb.ClientRegistration) (*pb.SignedClientRegistr
 	receptionKey := msg.GetClientReceptionRSAPubKey()
 	regCode := msg.GetRegistrationCode()
 
-	jww.INFO.Printf("public key: %v", rsa.CreatePublicKeyPem(m.pk.GetPublic()))
-
 	// Check for pre-existing registration for this public key first
 	if user, err := m.DB.GetUser(transmissionKey); err == nil && user != nil {
 		jww.WARN.Printf("Previous registration found for %s", transmissionKey)
@@ -86,10 +84,6 @@ func (m *Impl) RegisterUser(msg *pb.ClientRegistration) (*pb.SignedClientRegistr
 		return nil, errors.WithMessage(err, "Could not marshal transmission message")
 	}
 
-	jww.ERROR.Printf("FUCKity userpubKey: %v\nregTS: %v\nserizlied: %v\n sig: %v",
-		string(transmissionKey), regTimestamp.UnixNano(), transmissionBytes, transmissionSig)
-
-
 	receptionBytes, err := marshalConfirmationMessage(receptionKey, regTimestamp)
 	if err != nil {
 		return nil, errors.WithMessage(err, "Could not marshal reception message")
@@ -123,9 +117,6 @@ func marshalConfirmationMessage(pubKey string, regTimestamp time.Time) ([]byte, 
 	if err != nil {
 		return nil, errors.Errorf("Failed to marshal message: %v", err)
 	}
-	//todo check if proto.unmarshal fucks white space
-
-
 
 	return transmissionBytes, nil
 }
