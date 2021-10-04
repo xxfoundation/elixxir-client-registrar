@@ -17,6 +17,7 @@ import (
 	pb "gitlab.com/elixxir/comms/mixmessages"
 	"gitlab.com/elixxir/crypto/registration"
 	"gitlab.com/xx_network/comms/messages"
+	"gitlab.com/xx_network/crypto/signature/rsa"
 	"time"
 )
 
@@ -29,6 +30,8 @@ func (m *Impl) RegisterUser(msg *pb.ClientRegistration) (*pb.SignedClientRegistr
 	transmissionKey := msg.GetClientTransmissionRSAPubKey()
 	receptionKey := msg.GetClientReceptionRSAPubKey()
 	regCode := msg.GetRegistrationCode()
+
+	jww.INFO.Printf("public key: %v", rsa.CreatePublicKeyPem(m.pk.GetPublic()))
 
 	// Check for pre-existing registration for this public key first
 	if user, err := m.DB.GetUser(transmissionKey); err == nil && user != nil {
@@ -48,14 +51,16 @@ func (m *Impl) RegisterUser(msg *pb.ClientRegistration) (*pb.SignedClientRegistr
 
 	// Sign the user's transmission and reception key with the time the user's registration was received
 	regTimestamp := time.Now()
-	transmissionSig, err := registration.SignWithTimestamp(rand.Reader, m.pk, regTimestamp.UnixNano(), transmissionKey)
+	transmissionSig, err := registration.SignWithTimestamp(rand.Reader, m.pk,
+		regTimestamp.UnixNano(), transmissionKey)
 	if err != nil {
 		jww.WARN.Printf("RegisterUser error: can't sign pubkey")
 		return &pb.SignedClientRegistrationConfirmations{}, errors.Errorf(
 			"Unable to sign client public key: %+v", err)
 	}
 
-	receptionSig, err := registration.SignWithTimestamp(rand.Reader, m.pk, regTimestamp.UnixNano(), receptionKey)
+	receptionSig, err := registration.SignWithTimestamp(rand.Reader, m.pk,
+		regTimestamp.UnixNano(), receptionKey)
 	if err != nil {
 		jww.WARN.Printf("RegisterUser error: can't sign receptionKey")
 		return &pb.SignedClientRegistrationConfirmations{}, errors.Errorf(
@@ -80,6 +85,10 @@ func (m *Impl) RegisterUser(msg *pb.ClientRegistration) (*pb.SignedClientRegistr
 	if err != nil {
 		return nil, errors.WithMessage(err, "Could not marshal transmission message")
 	}
+
+	jww.ERROR.Printf("FUCKity userpubKey: %v\nregTS: %v\nserizlied: %v\n sig: %v",
+		string(transmissionKey), regTimestamp.UnixNano(), transmissionBytes, transmissionSig)
+
 
 	receptionBytes, err := marshalConfirmationMessage(receptionKey, regTimestamp)
 	if err != nil {
@@ -114,6 +123,9 @@ func marshalConfirmationMessage(pubKey string, regTimestamp time.Time) ([]byte, 
 	if err != nil {
 		return nil, errors.Errorf("Failed to marshal message: %v", err)
 	}
+	//todo check if proto.unmarshal fucks white space
+
+
 
 	return transmissionBytes, nil
 }

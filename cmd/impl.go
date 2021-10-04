@@ -49,11 +49,14 @@ func StartRegistrar(params Params, db *storage.Storage) (*Impl, error) {
 			"Registrar cert is %+v", err, certFromFile)
 	}
 
+	stopped := uint32(0)
+
 	impl := &Impl{
 		pk:           rsaPrivateKey,
 		cert:         cert,
 		certFromFile: certFromFile,
 		DB:           db,
+		Stopped: &stopped,
 	}
 	// TODO: ID for client registrar
 	impl.Comms = clientregistrar.StartClientRegistrarServer(&id.Permissioning, params.Address, NewImplementation(impl), certFromFile, rsaKeyPem)
