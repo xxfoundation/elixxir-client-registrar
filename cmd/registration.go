@@ -17,7 +17,6 @@ import (
 	pb "gitlab.com/elixxir/comms/mixmessages"
 	"gitlab.com/elixxir/crypto/registration"
 	"gitlab.com/xx_network/comms/messages"
-	"gitlab.com/xx_network/crypto/signature/rsa"
 	"time"
 )
 
