@@ -49,11 +49,14 @@ func StartRegistrar(params Params, db *storage.Storage) (*Impl, error) {
 			"Registrar cert is %+v", err, certFromFile)
 	}
 
+	stopped := uint32(0)
+
 	impl := &Impl{
 		pk:           rsaPrivateKey,
 		cert:         cert,
 		certFromFile: certFromFile,
 		DB:           db,
+		Stopped:      &stopped,
 	}
 	// TODO: ID for client registrar
 	impl.Comms = clientregistrar.StartClientRegistrarServer(&id.Permissioning, params.Address, NewImplementation(impl), certFromFile, rsaKeyPem)
@@ -64,7 +67,7 @@ func StartRegistrar(params Params, db *storage.Storage) (*Impl, error) {
 
 func NewImplementation(instance *Impl) *clientregistrar.Implementation {
 	impl := clientregistrar.NewImplementation()
-	impl.Functions.RegisterUser = func(msg *pb.UserRegistration) (*pb.UserRegistrationConfirmation, error) {
+	impl.Functions.RegisterUser = func(msg *pb.ClientRegistration) (*pb.SignedClientRegistrationConfirmations, error) {
 		confirmationMessage, err := instance.RegisterUser(msg)
 		if err != nil {
 			jww.ERROR.Printf("RegisterUser error: %+v", err)

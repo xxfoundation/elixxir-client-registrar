@@ -3,6 +3,7 @@ module gitlab.com/elixxir/client-registrar
 go 1.16
 
 require (
+	github.com/golang/protobuf v1.5.2
 	github.com/gopherjs/gopherjs v0.0.0-20200217142428-fce0ec30dd00 // indirect
 	github.com/jinzhu/gorm v1.9.12
 	github.com/mitchellh/go-homedir v1.1.0
@@ -13,7 +14,7 @@ require (
 	github.com/spf13/cobra v1.1.3
 	github.com/spf13/jwalterweatherman v1.1.0
 	github.com/spf13/viper v1.7.1
-	gitlab.com/elixxir/comms v0.0.4-0.20211004181649-32197e4cc5a3
+	gitlab.com/elixxir/comms v0.0.4-0.20211005175307-5fd61d2f311f
 	gitlab.com/elixxir/crypto v0.0.7-0.20210920180151-6c9b84bae372
 	gitlab.com/elixxir/registration v1.5.1-0.20211004223004-7c5e07a40a42
 	gitlab.com/xx_network/comms v0.0.4-0.20210921011654-3b73a40ed3d6
