@@ -17,8 +17,8 @@ require (
 	gitlab.com/elixxir/comms v0.0.4-0.20211013191446-7baa73a93ec1
 	gitlab.com/elixxir/crypto v0.0.7-0.20211013191130-4d77afadc799
 	gitlab.com/elixxir/registration v1.5.1-0.20211013192100-362ae2fcef3b
-	gitlab.com/xx_network/comms v0.0.4-0.20211013190913-27764ce8570a
+	gitlab.com/xx_network/comms v0.0.4-0.20211013231810-9a05a5dcd0b7
 	gitlab.com/xx_network/crypto v0.0.5-0.20211013190759-ad49cb42bde1
-	gitlab.com/xx_network/primitives v0.0.4-0.20211013190514-fc0d0269c3e9
+	gitlab.com/xx_network/primitives v0.0.4-0.20211013230007-611a38f19240
 	google.golang.org/protobuf v1.27.1 // indirect
 )
