@@ -40,10 +40,13 @@ func (m *Impl) RegisterUser(msg *pb.ClientRegistration) (*pb.SignedClientRegistr
 			jww.WARN.Printf("RegisterUser error: %+v", err)
 			return &pb.SignedClientRegistrationConfirmations{}, err
 		}
-	} else if regCode == "" && !m.rl.Add(1) {
-		// Rate limited, fail early
-		jww.WARN.Printf("RegisterUser error: %+v", rateLimitErr)
-		return &pb.SignedClientRegistrationConfirmations{}, rateLimitErr
+	} else {
+		accepted, _ := m.rl.Add(1)
+		if regCode == "" && !accepted {
+			// Rate limited, fail early
+			jww.WARN.Printf("RegisterUser error: %+v", rateLimitErr)
+			return &pb.SignedClientRegistrationConfirmations{}, rateLimitErr
+		}
 	}
 
 	// Sign the user's transmission and reception key with the time the user's registration was received
