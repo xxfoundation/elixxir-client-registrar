@@ -12,6 +12,7 @@ func NewMap() Storage {
 		&MapImpl{
 			clients: make(map[string]*RegistrationCode),
 			users:   make(map[string]*User),
+			state:   make(map[string]string),
 		}}
 }
 
@@ -74,4 +75,13 @@ func (m *MapImpl) GetUser(publicKey string) (*User, error) {
 func (m *MapImpl) InsertUser(user *User) error {
 	m.users[user.PublicKey] = user
 	return nil
+}
+
+func (m *MapImpl) UpsertState(key, value string) error {
+	m.state[key] = value
+	return nil
+}
+
+func (m *MapImpl) GetState(key string) (string, error) {
+	return m.state[key], nil
 }
