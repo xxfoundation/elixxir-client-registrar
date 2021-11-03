@@ -73,7 +73,7 @@ var rootCmd = &cobra.Command{
 			}
 		}
 
-		db, err := storage.NewDatabase(
+		db, _, err := storage.NewDatabase(
 			viper.GetString("dbUsername"),
 			viper.GetString("dbPassword"),
 			viper.GetString("dbName"),

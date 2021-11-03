@@ -2,12 +2,10 @@ package storage
 
 import (
 	"fmt"
+	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"github.com/pkg/errors"
 	jww "github.com/spf13/jwalterweatherman"
-	"gorm.io/driver/postgres"
-	"gorm.io/gorm"
-	"gorm.io/gorm/clause"
-	"gorm.io/gorm/logger"
 	"time"
 )
 
@@ -18,8 +16,8 @@ type DatabaseImpl struct {
 
 // NewDatabase initializes the database interface with Database backend
 // Returns a Storage interface, Close function, and error
-func NewDatabase(username, password, dbName, address,
-	port string) (Storage, error) {
+func NewDatabase(username, password, database, address,
+	port string) (Storage, func() error, error) {
 
 	var err error
 	var db *gorm.DB
@@ -28,14 +26,12 @@ func NewDatabase(username, password, dbName, address,
 		// Create the Database connection
 		connectString := fmt.Sprintf(
 			"host=%s port=%s user=%s dbname=%s sslmode=disable",
-			address, port, username, dbName)
+			address, port, username, database)
 		// Handle empty Database password
 		if len(password) > 0 {
 			connectString += fmt.Sprintf(" password=%s", password)
 		}
-		db, err = gorm.Open(postgres.Open(connectString), &gorm.Config{
-			Logger: logger.New(jww.TRACE, logger.Config{LogLevel: logger.Info}),
-		})
+		db, err = gorm.Open("postgres", connectString)
 	}
 
 	// Return the map-backend interface
@@ -48,22 +44,19 @@ func NewDatabase(username, password, dbName, address,
 			jww.WARN.Printf("Database backend connection information not provided")
 		}
 
-		return NewMap(), nil
+		return NewMap(), func() error { return nil }, nil
 	}
 
-	// Get and configure the internal database ConnPool
-	sqlDb, err := db.DB()
-	if err != nil {
-		return Storage{&DatabaseImpl{}}, errors.Errorf("Unable to configure database connection pool: %+v", err)
-	}
+	// Initialize the Database logger
+	db.SetLogger(jww.TRACE)
+	db.LogMode(true)
+
 	// SetMaxIdleConns sets the maximum number of connections in the idle connection pool.
-	sqlDb.SetMaxIdleConns(10)
+	db.DB().SetMaxIdleConns(10)
 	// SetMaxOpenConns sets the maximum number of open connections to the Database.
-	sqlDb.SetMaxOpenConns(50)
-	// SetConnMaxLifetime sets the maximum amount of time a connection may be idle.
-	sqlDb.SetConnMaxIdleTime(10 * time.Minute)
+	db.DB().SetMaxOpenConns(100)
 	// SetConnMaxLifetime sets the maximum amount of time a connection may be reused.
-	sqlDb.SetConnMaxLifetime(12 * time.Hour)
+	db.DB().SetConnMaxLifetime(24 * time.Hour)
 
 	// Initialize the Database schema
 	// WARNING: Order is important. Do not change without Database testing
@@ -71,14 +64,14 @@ func NewDatabase(username, password, dbName, address,
 		&RegistrationCode{}, &User{},
 	}
 	for _, model := range models {
-		err = db.AutoMigrate(model)
+		err = db.AutoMigrate(model).Error
 		if err != nil {
-			return Storage{&DatabaseImpl{}}, err
+			return Storage{}, func() error { return nil }, err
 		}
 	}
 
 	jww.INFO.Println("Database backend initialized successfully!")
-	return Storage{&DatabaseImpl{db: db}}, nil
+	return Storage{&DatabaseImpl{db: db}}, db.Close, nil
 
 }
 
@@ -132,14 +125,20 @@ func (d *DatabaseImpl) InsertUser(user *User) error {
 }
 
 func (d *DatabaseImpl) UpsertState(key, value string) error {
-	s := &State{
-		key,
-		value,
+	s := State{
+		Key:   key,
+		Value: value,
 	}
-	return d.db.Clauses(clause.OnConflict{UpdateAll: true}).Create(&s).Error
+	if err := d.db.Model(&s).Where("key = ?", key).Update("value", value).Error; err != nil {
+		if gorm.IsRecordNotFoundError(err) {
+			return d.db.Create(&s).Error
+		}
+		return err
+	}
+	return nil
 }
 
 func (d *DatabaseImpl) GetState(key string) (string, error) {
 	s := &State{}
-	return s.Value, d.db.First(&s, "key = ?", key).Error
+	return s.Value, d.db.Find(&s, "key = ?", key).Error
 }
