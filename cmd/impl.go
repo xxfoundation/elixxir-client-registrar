@@ -58,9 +58,14 @@ func StartRegistrar(params Params, db *storage.Storage) (*Impl, error) {
 		DB:           db,
 		Stopped:      &stopped,
 	}
+	capacity, period, err := impl.DB.GetBucketParameters()
+	if err != nil {
+		jww.WARN.Printf("Failed to retrieve rate limiting parameters from storage: %+v", err)
+		impl.rl = rateLimiting.CreateBucket(params.userRegCapacity, params.userRegCapacity, params.userRegLeakPeriod, func(u uint32, i int64) {})
+	}
 	// TODO: ID for client registrar
 	impl.Comms = clientregistrar.StartClientRegistrarServer(&id.Permissioning, params.Address, NewImplementation(impl), certFromFile, rsaKeyPem)
-	impl.rl = rateLimiting.CreateBucket(params.userRegCapacity, params.userRegCapacity, params.userRegLeakPeriod, func(u uint32, i int64) {})
+	impl.rl = rateLimiting.CreateBucket(capacity, capacity, period, func(u uint32, i int64) {})
 
 	return impl, nil
 }
