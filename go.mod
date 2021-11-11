@@ -6,6 +6,8 @@ require (
 	github.com/golang/protobuf v1.5.2
 	github.com/gopherjs/gopherjs v0.0.0-20200217142428-fce0ec30dd00 // indirect
 	github.com/jinzhu/gorm v1.9.12
+	github.com/jinzhu/now v1.1.2 // indirect
+	github.com/lib/pq v1.10.2 // indirect
 	github.com/mitchellh/go-homedir v1.1.0
 	github.com/pelletier/go-toml v1.7.0 // indirect
 	github.com/pkg/errors v0.9.1

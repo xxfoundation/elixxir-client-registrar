@@ -5,18 +5,26 @@ import (
 	"time"
 )
 
+var (
+	BucketUserRegCapacityKey   = "BucketCapacity"
+	BucketUserRegLeakPeriodKey = "BucketPeriod"
+)
+
 // database interface defines base methods for storage
 type database interface {
 	InsertClientRegCode(code string, uses int) error
 	UseCode(code string) error
 	GetUser(publicKey string) (*User, error)
 	InsertUser(user *User) error
+	UpsertState(key, value string) error
+	GetState(key string) (string, error)
 }
 
 // MapImpl struct is intended to mock the behavior of a real database
 type MapImpl struct {
 	clients map[string]*RegistrationCode
 	users   map[string]*User
+	state   map[string]string
 	sync.Mutex
 }
 
@@ -36,4 +44,9 @@ type User struct {
 	ReceptionKey string `gorm:"NOT NULL;UNIQUE"`
 	// Timestamp in which user registered with permissioning
 	RegistrationTimestamp time.Time `gorm:"NOT NULL"`
+}
+
+type State struct {
+	Key   string `gorm:"primary_key"`
+	Value string
 }

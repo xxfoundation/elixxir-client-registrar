@@ -123,3 +123,22 @@ func (d *DatabaseImpl) GetUser(publicKey string) (*User, error) {
 func (d *DatabaseImpl) InsertUser(user *User) error {
 	return d.db.Create(user).Error
 }
+
+func (d *DatabaseImpl) UpsertState(key, value string) error {
+	s := State{
+		Key:   key,
+		Value: value,
+	}
+	if err := d.db.Model(&s).Where("key = ?", key).Update("value", value).Error; err != nil {
+		if gorm.IsRecordNotFoundError(err) {
+			return d.db.Create(&s).Error
+		}
+		return err
+	}
+	return nil
+}
+
+func (d *DatabaseImpl) GetState(key string) (string, error) {
+	s := &State{}
+	return s.Value, d.db.Find(&s, "key = ?", key).Error
+}
