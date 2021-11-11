@@ -46,7 +46,7 @@ type User struct {
 	RegistrationTimestamp time.Time `gorm:"NOT NULL"`
 }
 
-type State struct {
+type RegistrarState struct {
 	Key   string `gorm:"primary_key"`
-	Value string
+	Value string `gorm:"NOT NULL"`
 }
