@@ -125,7 +125,7 @@ func (d *DatabaseImpl) InsertUser(user *User) error {
 }
 
 func (d *DatabaseImpl) UpsertState(key, value string) error {
-	s := State{
+	s := RegistrarState{
 		Key:   key,
 		Value: value,
 	}
@@ -139,6 +139,6 @@ func (d *DatabaseImpl) UpsertState(key, value string) error {
 }
 
 func (d *DatabaseImpl) GetState(key string) (string, error) {
-	s := &State{}
+	s := &RegistrarState{}
 	return s.Value, d.db.Find(&s, "key = ?", key).Error
 }
