@@ -1,11 +1,7 @@
-.PHONY: update master release setup update_master update_release build clean version
+.PHONY: update master release setup update_master update_release build clean
 
 setup:
 	git config --global --add url."git@gitlab.com:".insteadOf "https://gitlab.com/"
-
-version:
-	go run main.go generate
-	mv version_vars.go cmd/version_vars.go
 
 clean:
 	rm -rf vendor/
@@ -30,7 +26,7 @@ update_master:
 	GOFLAGS="" go get gitlab.com/elixxir/crypto@release
 	GOFLAGS="" go get gitlab.com/elixxir/comms@master
 
-master: update_master clean build version
+master: update_master clean build
 
-release: update_release clean build version
+release: update_release clean build
 

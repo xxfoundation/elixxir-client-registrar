@@ -47,7 +47,7 @@ const defaultDisabledNodesPollDuration = time.Minute
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "client registrar",
+	Use:   "client_registrar",
 	Short: "Runs a registration server for cMix",
 	Long:  `This server provides client registration functions on cMix`,
 	Args:  cobra.NoArgs,
