@@ -180,3 +180,32 @@ func TestMapImpl_GetUserNotExists(t *testing.T) {
 		t.Errorf("Get expected to not find user!")
 	}
 }
+
+func TestMapImpl_GetState(t *testing.T) {
+	m := &MapImpl{state: make(map[string]string)}
+	testVal := "i'm a value"
+	m.state[BucketUserRegLeakPeriodKey] = testVal
+	val, err := m.GetState(BucketUserRegLeakPeriodKey)
+	if err != nil {
+		t.Errorf("Failed to get state value %s: %+v", BucketUserRegLeakPeriodKey, err)
+	} else if val != testVal {
+		t.Errorf("Expected key '%s' to return '%s' but got '%s' instead", BucketUserRegLeakPeriodKey, testVal, val)
+	}
+
+	val, err = m.GetState(BucketUserRegCapacityKey)
+	if err == nil {
+		t.Errorf("Expected an error, but did not receive one")
+	}
+}
+
+func TestMapImpl_UpsertState(t *testing.T) {
+	m := &MapImpl{state: make(map[string]string)}
+	testVal := "i'm a value"
+	err := m.UpsertState(BucketUserRegCapacityKey, testVal)
+	if err != nil {
+		t.Errorf("Failed to upsert state: %+v", err)
+	}
+	if m.state[BucketUserRegCapacityKey] != testVal {
+		t.Errorf("Failed to properly upsert state")
+	}
+}

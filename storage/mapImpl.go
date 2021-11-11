@@ -83,5 +83,9 @@ func (m *MapImpl) UpsertState(key, value string) error {
 }
 
 func (m *MapImpl) GetState(key string) (string, error) {
-	return m.state[key], nil
+	val, ok := m.state[key]
+	if !ok {
+		return "", errors.Errorf("No state with key value %s", key)
+	}
+	return val, nil
 }
