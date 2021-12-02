@@ -28,6 +28,8 @@ func TestMain(m *testing.M) {
 		fmt.Printf("Could not get node key: %+v\n", err)
 	}
 
+	connect.TestingOnlyDisableTLS = true
+
 	testParams = Params{
 		Address:           permAddr,
 		CertPath:          testkeys.GetCACertPath(),
