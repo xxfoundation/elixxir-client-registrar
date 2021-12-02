@@ -6,6 +6,7 @@ import (
 	"gitlab.com/elixxir/client-registrar/storage"
 	pb "gitlab.com/elixxir/comms/mixmessages"
 	"gitlab.com/elixxir/registration/testkeys"
+	"gitlab.com/xx_network/comms/connect"
 	"gitlab.com/xx_network/primitives/utils"
 	"os"
 	"strconv"
@@ -27,6 +28,8 @@ func TestMain(m *testing.M) {
 	if err != nil {
 		fmt.Printf("Could not get node key: %+v\n", err)
 	}
+
+	connect.TestingOnlyDisableTLS = true
 
 	testParams = Params{
 		Address:           permAddr,
