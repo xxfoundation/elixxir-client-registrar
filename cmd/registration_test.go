@@ -6,6 +6,7 @@ import (
 	"gitlab.com/elixxir/client-registrar/storage"
 	pb "gitlab.com/elixxir/comms/mixmessages"
 	"gitlab.com/elixxir/registration/testkeys"
+	"gitlab.com/xx_network/comms/connect"
 	"gitlab.com/xx_network/primitives/utils"
 	"os"
 	"strconv"
