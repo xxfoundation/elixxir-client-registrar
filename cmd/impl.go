@@ -60,7 +60,7 @@ func StartRegistrar(params Params, db *storage.Storage) (*Impl, error) {
 	}
 	capacity, period, err := impl.DB.GetBucketParameters()
 	if err != nil {
-		jww.WARN.Printf("Failed to retrieve rate limiting parameters from storage: %+v", err)
+		jww.WARN.Println("Failed to retrieve rate limiting parameters from storage")
 		impl.rl = rateLimiting.CreateBucket(params.userRegCapacity, params.userRegCapacity, params.userRegLeakPeriod, func(u uint32, i int64) {})
 	} else {
 		impl.rl = rateLimiting.CreateBucket(capacity, capacity, period, func(u uint32, i int64) {})
