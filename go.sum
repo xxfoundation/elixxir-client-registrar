@@ -268,8 +268,8 @@ github.com/zeebo/blake3 v0.0.4/go.mod h1:YOZo8A49yNqM0X/Y+JmDUZshJWLt1laHsNSn5ny
 github.com/zeebo/blake3 v0.1.1/go.mod h1:G9pM4qQwjRzF1/v7+vabMj/c5mWpGZ2Wzo3Eb4z0pb4=
 github.com/zeebo/pcg v0.0.0-20181207190024-3cdc6b625a05/go.mod h1:Gr+78ptB0MwXxm//LBaEvBiaXY7hXJ6KGe2V32X2F6E=
 github.com/zeebo/pcg v1.0.0/go.mod h1:09F0S9iiKrwn9rlI5yjLkmrug154/YRW6KnnXVDM/l4=
-gitlab.com/elixxir/comms v0.0.4-0.20220126003616-2b7476edf5c9 h1:En4eAkyLSW7Xsx5q8idZ4hrAZPdWyEaGtDKDxGchLKI=
-gitlab.com/elixxir/comms v0.0.4-0.20220126003616-2b7476edf5c9/go.mod h1:54rjgL6dsF8xGJ6JVDmTmDJ1dMWBk3WIesJgNCV8474=
+gitlab.com/elixxir/comms v0.0.4-0.20220126185048-8a446145d07d h1:kaYlz3cqZnCdLYEn9Bo+jDv8LDNQ9gb8R+Ip0LI6Pvs=
+gitlab.com/elixxir/comms v0.0.4-0.20220126185048-8a446145d07d/go.mod h1:54rjgL6dsF8xGJ6JVDmTmDJ1dMWBk3WIesJgNCV8474=
 gitlab.com/elixxir/crypto v0.0.0-20200804182833-984246dea2c4/go.mod h1:ucm9SFKJo+K0N2GwRRpaNr+tKXMIOVWzmyUD0SbOu2c=
 gitlab.com/elixxir/crypto v0.0.3/go.mod h1:ZNgBOblhYToR4m8tj4cMvJ9UsJAUKq+p0gCp07WQmhA=
 gitlab.com/elixxir/crypto v0.0.7-0.20220110170041-7e42f2e8b062 h1:6LLdEX2U/jA3RakJh/cKtjckMYBBjrjyowoBEtIF9L4=
@@ -280,8 +280,8 @@ gitlab.com/elixxir/primitives v0.0.0-20200804182913-788f47bded40/go.mod h1:tzdFF
 gitlab.com/elixxir/primitives v0.0.1/go.mod h1:kNp47yPqja2lHSiS4DddTvFpB/4D9dB2YKnw5c+LJCE=
 gitlab.com/elixxir/primitives v0.0.3-0.20220104173924-275cb9d7834f h1:zg3oYk+a6Wmq9tGRwka3GjJR1XRZIVCsOMpBGxtF2yc=
 gitlab.com/elixxir/primitives v0.0.3-0.20220104173924-275cb9d7834f/go.mod h1:zA+1Lp9fGPo6pl1QxtMoNPLeZJ1O5m4kcH7HNxePQnQ=
-gitlab.com/elixxir/registration v1.5.1-0.20220126004121-73cd714a0299 h1:byIzCPeILrGhZX81zadq+dbUCVlygAcCdTKQEwkn18E=
-gitlab.com/elixxir/registration v1.5.1-0.20220126004121-73cd714a0299/go.mod h1:KHUNJCSkOh1pLmarDbflprmn91kQ1C2NPySfpJxHmn4=
+gitlab.com/elixxir/registration v1.5.1-0.20220126185552-53b90ec153c2 h1:T0e/mUnJW8A5lL70MAZ9P7rlbwMKwNgih1Sw87rVsI8=
+gitlab.com/elixxir/registration v1.5.1-0.20220126185552-53b90ec153c2/go.mod h1:1swIgBpr/4h4MHkaUFnSiFtOr2kLJc8RsnK6jW5MMZo=
 gitlab.com/xx_network/comms v0.0.0-20200805174823-841427dd5023/go.mod h1:owEcxTRl7gsoM8c3RQ5KAm5GstxrJp5tn+6JfQ4z5Hw=
 gitlab.com/xx_network/comms v0.0.4-0.20211227194445-c099754b3cda h1:oWl8TuAgdx/6J9lwdH8wYGSb4W6D5TG1AZkzbA8EzbE=
 gitlab.com/xx_network/comms v0.0.4-0.20211227194445-c099754b3cda/go.mod h1:5arueRMa2MNa6dALnfJwyZOhqhV53Gqc+tlHRz+Ycjw=
