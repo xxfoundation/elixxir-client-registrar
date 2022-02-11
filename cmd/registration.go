@@ -10,13 +10,13 @@ package cmd
 
 import (
 	"crypto/rand"
+	"github.com/golang/protobuf/proto"
 	"github.com/pkg/errors"
 	jww "github.com/spf13/jwalterweatherman"
 	"gitlab.com/elixxir/client-registrar/storage"
 	pb "gitlab.com/elixxir/comms/mixmessages"
 	"gitlab.com/elixxir/crypto/registration"
 	"gitlab.com/xx_network/comms/messages"
-	"google.golang.org/protobuf/proto"
 	"time"
 )
 
