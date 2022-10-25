@@ -10,12 +10,12 @@ require (
 	github.com/spf13/cobra v1.1.3
 	github.com/spf13/jwalterweatherman v1.1.0
 	github.com/spf13/viper v1.7.1
-	gitlab.com/elixxir/comms v0.0.4-0.20221017173926-4eaa6061dfaa
-	gitlab.com/elixxir/crypto v0.0.7-0.20221017204335-9201b3672f3a
-	gitlab.com/elixxir/registration v1.5.1-0.20220308210944-4419d95b9dfc
-	gitlab.com/xx_network/comms v0.0.4-0.20221017172508-09e33697dc15
-	gitlab.com/xx_network/crypto v0.0.5-0.20221017172404-b384a8d8b171
-	gitlab.com/xx_network/primitives v0.0.4-0.20221017171439-42169a3e5c0d
+	gitlab.com/elixxir/comms v0.0.4-0.20221025020711-eba3adc4eb06
+	gitlab.com/elixxir/crypto v0.0.7-0.20221025020525-985806badd65
+	gitlab.com/elixxir/registration v1.5.1-0.20221025021833-844e82e1418c
+	gitlab.com/xx_network/comms v0.0.4-0.20221025020408-9b62d4c2e700
+	gitlab.com/xx_network/crypto v0.0.5-0.20221025020316-517fa8f91d2c
+	gitlab.com/xx_network/primitives v0.0.4-0.20221025020003-cbec15a71b8f
 )
 
 require (
@@ -41,11 +41,11 @@ require (
 	github.com/spf13/cast v1.3.1 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/subosito/gotenv v1.2.0 // indirect
-	gitlab.com/elixxir/primitives v0.0.3-0.20221017172918-6176818d1aba // indirect
+	gitlab.com/elixxir/primitives v0.0.3-0.20221025020430-f5d2eb330fbc // indirect
 	go.uber.org/atomic v1.10.0 // indirect
-	golang.org/x/crypto v0.0.0-20220525230936-793ad666bf5e // indirect
+	golang.org/x/crypto v0.0.0-20220722155217-630584e8d5aa // indirect
 	golang.org/x/net v0.0.0-20220822230855-b0a4917ee28c // indirect
-	golang.org/x/sys v0.0.0-20220728004956-3c1f35247d10 // indirect
+	golang.org/x/sys v0.0.0-20220731174439-a90be440212d // indirect
 	golang.org/x/text v0.3.7 // indirect
 	google.golang.org/genproto v0.0.0-20220822174746-9e6da59bd2fc // indirect
 	google.golang.org/grpc v1.49.0 // indirect
