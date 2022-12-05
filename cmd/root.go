@@ -56,7 +56,7 @@ var rootCmd = &cobra.Command{
 		certPath := viper.GetString("certPath")
 		keyPath := viper.GetString("keyPath")
 		signedCertPath := viper.GetString("signedCertPath")
-		signedKeyPath := viper.GetString("signeKeyPath")
+		signedKeyPath := viper.GetString("signedKeyPath")
 
 		localAddress := fmt.Sprintf("0.0.0.0:%d", viper.GetInt("port"))
 		ipAddr := viper.GetString("publicAddress")

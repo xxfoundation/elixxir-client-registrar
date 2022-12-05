@@ -77,12 +77,13 @@ func StartRegistrar(params Params, db *storage.Storage) (*Impl, error) {
 		jww.INFO.Printf("Enabling TLS...")
 		signedCert, err := utils.ReadFile(params.SignedCertPath)
 		if err != nil {
-			return nil, errors.Errorf("failed to read certificate at %+v: %+v", params.CertPath, err)
+			return nil, errors.Errorf("failed to read certificate at %+v: %+v",
+				params.SignedCertPath, err)
 		}
 		signedKey, err := utils.ReadFile(params.SignedKeyPath)
 		if err != nil {
 			return nil, errors.Errorf("failed to read key at %+v: %+v",
-				params.KeyPath, err)
+				params.SignedKeyPath, err)
 		}
 		err = impl.Comms.ServeHttps(signedCert, signedKey)
 		if err != nil {
