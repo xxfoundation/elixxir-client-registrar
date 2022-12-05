@@ -53,9 +53,8 @@ func StartRegistrar(params Params, db *storage.Storage) (*Impl, error) {
 	cert, err := tls.LoadCertificate(string(certFromFile))
 	if err != nil {
 		return nil, errors.Errorf("Failed to parse client registrar server cert: %+v. "+
-			"Registrar cert is %+v", err, certFromFile)
+			"Registrar cert is %s", err, certFromFile)
 	}
-
 	stopped := uint32(0)
 
 	impl := &Impl{
@@ -72,8 +71,24 @@ func StartRegistrar(params Params, db *storage.Storage) (*Impl, error) {
 	} else {
 		impl.rl = rateLimiting.CreateBucket(capacity, capacity, period, func(u uint32, i int64) {})
 	}
-	// TODO: ID for client registrar
 	impl.Comms = clientregistrar.StartClientRegistrarServer(&id.Permissioning, params.Address, NewImplementation(impl), certFromFile, rsaKeyPem)
+
+	if len(params.SignedCertPath) > 0 {
+		jww.INFO.Printf("Enabling TLS...")
+		signedCert, err := utils.ReadFile(params.SignedCertPath)
+		if err != nil {
+			return nil, errors.Errorf("failed to read certificate at %+v: %+v", params.CertPath, err)
+		}
+		signedKey, err := utils.ReadFile(params.SignedKeyPath)
+		if err != nil {
+			return nil, errors.Errorf("failed to read key at %+v: %+v",
+				params.KeyPath, err)
+		}
+		err = impl.Comms.ServeHttps(signedCert, signedKey)
+		if err != nil {
+			return nil, err
+		}
+	}
 
 	return impl, nil
 }

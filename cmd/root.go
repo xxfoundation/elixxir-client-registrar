@@ -31,6 +31,8 @@ type Params struct {
 	Address           string
 	CertPath          string
 	KeyPath           string
+	SignedCertPath    string
+	SignedKeyPath     string
 	userRegCapacity   uint32
 	userRegLeakPeriod time.Duration
 	publicAddress     string
@@ -43,9 +45,6 @@ var (
 	ClientRegCodes []string
 )
 
-// Default duration between polls of the disabled Node list for updates.
-const defaultDisabledNodesPollDuration = time.Minute
-
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "client_registrar",
@@ -56,6 +55,8 @@ var rootCmd = &cobra.Command{
 		// Parse config file options
 		certPath := viper.GetString("certPath")
 		keyPath := viper.GetString("keyPath")
+		signedCertPath := viper.GetString("signedCertPath")
+		signedKeyPath := viper.GetString("signeKeyPath")
 
 		localAddress := fmt.Sprintf("0.0.0.0:%d", viper.GetInt("port"))
 		ipAddr := viper.GetString("publicAddress")
@@ -116,6 +117,8 @@ var rootCmd = &cobra.Command{
 			Address:           localAddress,
 			CertPath:          certPath,
 			KeyPath:           keyPath,
+			SignedCertPath:    signedCertPath,
+			SignedKeyPath:     signedKeyPath,
 			publicAddress:     publicAddress,
 			userRegCapacity:   userRegCapacity,
 			userRegLeakPeriod: userRegLeakPeriod,
