@@ -10,10 +10,10 @@ require (
 	github.com/spf13/cobra v1.1.3
 	github.com/spf13/jwalterweatherman v1.1.0
 	github.com/spf13/viper v1.7.1
-	gitlab.com/elixxir/comms v0.0.4-0.20221201115310-02192cebc874
+	gitlab.com/elixxir/comms v0.0.4-0.20221206193708-77f17325fc4f
 	gitlab.com/elixxir/crypto v0.0.7-0.20221130223330-600937502838
 	gitlab.com/elixxir/registration v1.5.1-0.20221110181614-774452d5de19
-	gitlab.com/xx_network/comms v0.0.4-0.20221201114958-16e81c0669a8
+	gitlab.com/xx_network/comms v0.0.4-0.20221206193237-88c794fcaa9d
 	gitlab.com/xx_network/crypto v0.0.5-0.20221121220724-8eefdbb0eb46
 	gitlab.com/xx_network/primitives v0.0.4-0.20221110180011-fd6ea3058225
 )
@@ -54,4 +54,5 @@ require (
 	gopkg.in/ini.v1 v1.51.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	nhooyr.io/websocket v1.8.7 // indirect
+	src.agwa.name/tlshacks v0.0.0-20220518131152-d2c6f4e2b780 // indirect
 )
