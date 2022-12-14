@@ -24,6 +24,10 @@ port: 11420
 keyPath: ""
 # Path to the permissioning server certificate file
 certPath: ""
+# Path to the signed registration server private key file
+signedKeyPath: ""
+# Path to the signed registration server certificate file
+signedCertPath: ""
 
 # Maximum number of connections per period
 userRegCapacity: 1000
