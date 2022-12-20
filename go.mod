@@ -13,13 +13,13 @@ require (
 	gitlab.com/elixxir/comms v0.0.4-0.20221201115310-02192cebc874
 	gitlab.com/elixxir/crypto v0.0.7-0.20221130223330-600937502838
 	gitlab.com/elixxir/registration v1.5.1-0.20221110181614-774452d5de19
-	gitlab.com/xx_network/comms v0.0.4-0.20221201114958-16e81c0669a8
+	gitlab.com/xx_network/comms v0.0.4-0.20221220185313-a942768a955a
 	gitlab.com/xx_network/crypto v0.0.5-0.20221121220724-8eefdbb0eb46
 	gitlab.com/xx_network/primitives v0.0.4-0.20221110180011-fd6ea3058225
 )
 
 require (
-	git.xx.network/elixxir/grpc-web-go-client v0.0.0-20221102223039-dc1f37d94e70 // indirect
+	git.xx.network/elixxir/grpc-web-go-client v0.0.0-20221220161254-68bee4d4a516 // indirect
 	github.com/cenkalti/backoff/v4 v4.1.3 // indirect
 	github.com/desertbit/timer v0.0.0-20180107155436-c41aec40b27f // indirect
 	github.com/fsnotify/fsnotify v1.4.9 // indirect
@@ -54,4 +54,5 @@ require (
 	gopkg.in/ini.v1 v1.51.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	nhooyr.io/websocket v1.8.7 // indirect
+	src.agwa.name/tlshacks v0.0.0-20220518131152-d2c6f4e2b780 // indirect
 )
