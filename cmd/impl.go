@@ -88,6 +88,9 @@ func StartRegistrar(params Params, db *storage.Storage) (*Impl, error) {
 		}
 
 		keyPair, err := gotls.X509KeyPair(signedCert, signedKey)
+		if err != nil {
+			return nil, err
+		}
 		err = impl.Comms.ServeHttps(keyPair)
 		if err != nil {
 			return nil, err
