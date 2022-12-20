@@ -8,6 +8,7 @@
 package cmd
 
 import (
+	gotls "crypto/tls"
 	"crypto/x509"
 	"github.com/pkg/errors"
 	jww "github.com/spf13/jwalterweatherman"
@@ -85,7 +86,9 @@ func StartRegistrar(params Params, db *storage.Storage) (*Impl, error) {
 			return nil, errors.Errorf("failed to read key at %+v: %+v",
 				params.SignedKeyPath, err)
 		}
-		err = impl.Comms.ServeHttps(signedCert, signedKey)
+
+		keyPair, err := gotls.X509KeyPair(signedCert, signedKey)
+		err = impl.Comms.ServeHttps(keyPair)
 		if err != nil {
 			return nil, err
 		}
