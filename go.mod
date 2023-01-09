@@ -10,9 +10,9 @@ require (
 	github.com/spf13/cobra v1.1.3
 	github.com/spf13/jwalterweatherman v1.1.0
 	github.com/spf13/viper v1.7.1
-	gitlab.com/elixxir/comms v0.0.4-0.20230109232529-22aec03d005e
+	gitlab.com/elixxir/comms v0.0.4-0.20230109233320-a0c90d3324a0
 	gitlab.com/elixxir/crypto v0.0.7-0.20230109232445-64f3e6192c3a
-	gitlab.com/elixxir/registration v1.5.1-0.20230109232650-6bf7068bfa1f
+	gitlab.com/elixxir/registration v1.5.1-0.20230109235659-d54d8fd74ca5
 	gitlab.com/xx_network/comms v0.0.4-0.20230109222246-7de292982747
 	gitlab.com/xx_network/crypto v0.0.5-0.20230109222209-557b66d73c33
 	gitlab.com/xx_network/primitives v0.0.4-0.20221219230308-4b5550a9247d
@@ -53,10 +53,10 @@ require (
 	gitlab.com/elixxir/primitives v0.0.3-0.20230109222259-f62b2a90b62c // indirect
 	gitlab.com/xx_network/ring v0.0.3-0.20220902183151-a7d3b15bc981 // indirect
 	go.uber.org/atomic v1.10.0 // indirect
-	golang.org/x/crypto v0.0.0-20220722155217-630584e8d5aa // indirect
-	golang.org/x/net v0.0.0-20220822230855-b0a4917ee28c // indirect
-	golang.org/x/sys v0.0.0-20220928140112-f11e5e49a4ec // indirect
-	golang.org/x/text v0.3.7 // indirect
+	golang.org/x/crypto v0.5.0 // indirect
+	golang.org/x/net v0.5.0 // indirect
+	golang.org/x/sys v0.4.0 // indirect
+	golang.org/x/text v0.6.0 // indirect
 	google.golang.org/genproto v0.0.0-20220822174746-9e6da59bd2fc // indirect
 	google.golang.org/grpc v1.49.0 // indirect
 	google.golang.org/protobuf v1.28.1 // indirect
