@@ -466,6 +466,8 @@ gitlab.com/elixxir/registration v1.5.1-0.20230109232650-6bf7068bfa1f h1:jWrtyy5m
 gitlab.com/elixxir/registration v1.5.1-0.20230109232650-6bf7068bfa1f/go.mod h1:IHHZ9YFrq60V6PHc0T7lWfaj5RzJM4O1TWnS9khdrJQ=
 gitlab.com/elixxir/registration v1.5.1-0.20230109235659-d54d8fd74ca5 h1:3WOUGAdmho/nVPpRXoaFBLovVlZpnHkiA7EdlwLg/G0=
 gitlab.com/elixxir/registration v1.5.1-0.20230109235659-d54d8fd74ca5/go.mod h1:HTBnk73iEX6WGF+p1PeBYwJUaGIlfROmOr6Vk7TYGxM=
+gitlab.com/elixxir/registration v1.5.1-0.20230110000458-8ace812e1f33 h1:KN2onCudV8lLd1RhlYO1N9cACaqNJ76k/CRB130SdwY=
+gitlab.com/elixxir/registration v1.5.1-0.20230110000458-8ace812e1f33/go.mod h1:HTBnk73iEX6WGF+p1PeBYwJUaGIlfROmOr6Vk7TYGxM=
 gitlab.com/xx_network/comms v0.0.4-0.20221220185313-a942768a955a h1:1FRQ/Y9rRl26k7Ho4XyrdPsEluG2QJzBxDxV6g4sMtk=
 gitlab.com/xx_network/comms v0.0.4-0.20221220185313-a942768a955a/go.mod h1:Vx4ElRzfxBTBdSG2o8jHdbdo491V9EQEGHO1FAW4LsU=
 gitlab.com/xx_network/comms v0.0.4-0.20230109222246-7de292982747 h1:rBPTOgvQQ1aje8jLu6TvbNHqgk4OQNqHi6S7cMansKo=
